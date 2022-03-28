@@ -3,7 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/background.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_baseline_add_circle_24.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_baseline_fingerprint_24.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_baseline_home_24.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_home_foreground.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_add_foreground.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_home_foreground.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_logout_foreground.xml" value="0.234" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/menu/navigation.xml" value="0.264" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/mipmap-anydpi-v26/ic_logout.xml" value="0.1" />
       </map>
     </option>
   </component>
