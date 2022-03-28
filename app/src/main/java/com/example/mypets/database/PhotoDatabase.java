@@ -53,8 +53,8 @@ public class PhotoDatabase extends Database<Photo> {
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-                byte[] byteArray = cursor.getBlob(cursor.getColumnIndex(COLUMN_PHOTO));
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                @SuppressLint("Range") byte[] byteArray = cursor.getBlob(cursor.getColumnIndex(COLUMN_PHOTO));
 
                 photos.add(new Photo(id, petId, BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length)));
                 cursor.moveToNext();

@@ -22,12 +22,14 @@ public abstract class Database <T> extends SQLiteOpenHelper implements DatabaseI
 
     @Override
     public void onCreate(@NotNull SQLiteDatabase db) {
+        UserDatabase.onCreateDB(db);
         PetsDatabase.onCreateDB(db);
         PhotoDatabase.onCreateDB(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        UserDatabase.onUpgradeDB(db, oldVersion, newVersion);
         PetsDatabase.onUpgradeDB(db, oldVersion, newVersion);
         PhotoDatabase.onUpgradeDB(db, oldVersion, newVersion);
     }

@@ -2,7 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/OverviewFragment">
+
     <fragment
         android:id="@+id/OverviewFragment"
         android:name="com.example.mypets.fragment.OverviewFragment"
@@ -39,12 +41,14 @@
             android:id="@+id/action_EditPetsFragment_to_CameraFragment"
             app:destination="@id/CameraFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/LoginFragment"
         android:name="com.example.mypets.fragment.LoginFragment"
         android:label="Login Fragment"
         tools:layout="@layout/fragment_login">
     </fragment>
+
     <fragment
         android:id="@+id/CameraFragment"
         android:name="com.example.mypets.fragment.CameraFragment"

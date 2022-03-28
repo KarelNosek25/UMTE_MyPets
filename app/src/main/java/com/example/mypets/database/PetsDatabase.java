@@ -67,10 +67,10 @@ public class PetsDatabase extends Database<Pet> {
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
 
         if (cursor.moveToFirst()) {
-            String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
-            LocalDate date = Date.parseDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
-            String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
-            boolean archive = cursor.getInt(cursor.getColumnIndex(COLUMN_ARCHIVE)) > 0;
+            @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
+            @SuppressLint("Range") LocalDate date = Date.parseDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
+            @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
+            @SuppressLint("Range") boolean archive = cursor.getInt(cursor.getColumnIndex(COLUMN_ARCHIVE)) > 0;
 
             return new Pet(id, title, date, description, archive);
         }
@@ -91,11 +91,11 @@ public class PetsDatabase extends Database<Pet> {
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
-                String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
-                String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
-                LocalDate date = Date.parseDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
-                boolean archive = cursor.getInt(cursor.getColumnIndex(COLUMN_ARCHIVE)) == 1;
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
+                @SuppressLint("Range") String description = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
+                @SuppressLint("Range") LocalDate date = Date.parseDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
+                @SuppressLint("Range") boolean archive = cursor.getInt(cursor.getColumnIndex(COLUMN_ARCHIVE)) == 1;
 
                 pets.add(new Pet(id, title, date, description, archive));
                 cursor.moveToNext();

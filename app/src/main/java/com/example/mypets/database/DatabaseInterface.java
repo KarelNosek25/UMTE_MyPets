@@ -11,4 +11,5 @@ public interface DatabaseInterface<T> {
     List<T> getAll();
 
     boolean update(T category);
+
 }
