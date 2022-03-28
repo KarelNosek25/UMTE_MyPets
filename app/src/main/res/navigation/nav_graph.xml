@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph">
+    <fragment
+        android:id="@+id/OverviewFragment"
+        android:name="com.example.mypets.fragment.OverviewFragment"
+        android:label="Overview Fragment"
+        tools:layout="@layout/fragment_overview">
+
+        <action
+            android:id="@+id/action_OverviewFragment_to_NewPetsFragment"
+            app:destination="@id/NewPetsFragment" />
+        <action
+            android:id="@+id/action_OverviewFragment_to_EditPetsFragment"
+            app:destination="@id/EditPetsFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/NewPetsFragment"
+        android:name="com.example.mypets.fragment.NewPetsFragment"
+        android:label="New Plant Fragment"
+        tools:layout="@layout/fragment_new_pets">
+
+        <action
+            android:id="@+id/action_NewPetsFragment_to_OverviewFragment"
+            app:destination="@id/OverviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EditPetsFragment"
+        android:name="com.example.mypets.fragment.EditPetsFragment"
+        android:label="Edit Pets Fragment"
+        tools:layout="@layout/fragment_edit_pets">
+        <action
+            android:id="@+id/action_EditPetsFragment_to_OverviewFragment"
+            app:destination="@id/OverviewFragment" />
+        <action
+            android:id="@+id/action_EditPetsFragment_to_CameraFragment"
+            app:destination="@id/CameraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.example.mypets.fragment.LoginFragment"
+        android:label="Login Fragment"
+        tools:layout="@layout/fragment_login">
+    </fragment>
+    <fragment
+        android:id="@+id/CameraFragment"
+        android:name="com.example.mypets.fragment.CameraFragment"
+        android:label="Camera Fragment"
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_CameraFragment_to_EditPetsFragment"
+            app:destination="@id/EditPetsFragment" />
+        <action
+            android:id="@+id/action_CameraFragment_to_OverviewFragment"
+            app:destination="@+id/OverviewFragment" />
+    </fragment>
+</navigation>

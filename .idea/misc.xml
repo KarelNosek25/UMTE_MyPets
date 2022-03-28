@@ -8,6 +8,7 @@
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_baseline_add_circle_24.xml" value="0.1" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_baseline_fingerprint_24.xml" value="0.1" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_baseline_home_24.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_fingerprint.xml" value="0.1355" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-hdpi/ic_home_foreground.xml" value="0.1" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_add_foreground.xml" value="0.1" />
@@ -15,7 +16,17 @@
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_home_foreground.xml" value="0.1" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/drawable/ic_logout_foreground.xml" value="0.234" />
-        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/content_main.xml" value="0.2" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_camera.xml" value="0.14351851851851852" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_edit_pets.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_new_pets.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_overview.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/info_pets.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/one_line_plant.xml" value="0.14351851851851852" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/photo_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/menu/bottom_navigation.xml" value="0.25416666666666665" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/menu/navigation.xml" value="0.264" />
         <entry key="..\:/VS/Ing/2_semestr/UMTE/UMTE_MyPets/app/src/main/res/mipmap-anydpi-v26/ic_logout.xml" value="0.1" />
       </map>

@@ -6,13 +6,13 @@ public class Photo {
 
     private final int id;
 
-    private final int plantId;
+    private final int petId;
 
     private final Bitmap bitmap;
 
-    public Photo(int id, int plantId, Bitmap bitmap) {
+    public Photo(int id, int petId, Bitmap bitmap) {
         this.id = id;
-        this.plantId = plantId;
+        this.petId = petId;
         this.bitmap = bitmap;
     }
 
@@ -20,8 +20,8 @@ public class Photo {
         return id;
     }
 
-    public int getPlantId() {
-        return plantId;
+    public int getPetId() {
+        return petId;
     }
 
     public Bitmap getBitmap() {
