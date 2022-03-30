@@ -9,26 +9,26 @@ public class Pet {
     private String title;
 
     private LocalDate date;
-/*
+
     private String animal;
 
     private String race;
 
     private int weight;
-*/
+
     private String comment;
 
     private boolean archive;
 
-    public Pet(int id, String title, LocalDate date, /*String animal, String race, int weight,*/ String comment, boolean archive) {
+    public Pet(int id, String title, LocalDate date, String animal, String race, int weight, String comment, boolean archive) {
         this.id = id;
         this.title = title;
         this.date = date;
-        /*
+
         this.animal = animal;
         this.race = race;
         this.weight = weight;1
-        */
+
         this.comment = comment;
         this.archive = archive;
     }
@@ -56,7 +56,7 @@ public class Pet {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-/*
+
     public String getAnimal() {
         return animal;
     }
@@ -80,7 +80,7 @@ public class Pet {
     public void setWeight(int weight) {
         this.weight = weight;
     }
-*/
+
     public String getComment() {
         return comment;
     }
