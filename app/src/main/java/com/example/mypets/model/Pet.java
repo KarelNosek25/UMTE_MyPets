@@ -27,7 +27,7 @@ public class Pet {
 
         this.animal = animal;
         this.race = race;
-        this.weight = weight;1
+        this.weight = weight;
 
         this.comment = comment;
         this.archive = archive;

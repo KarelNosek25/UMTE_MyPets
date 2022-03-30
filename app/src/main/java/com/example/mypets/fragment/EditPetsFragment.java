@@ -28,12 +28,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class EditPetsFragment extends CommonFragment{
+public class EditPetsFragment extends CommonFragment {
 
     private PhotoDatabase photoDatabase;
     private PetsDatabase petsDatabase;
 
-    private EditText et_title, et_date, et_description;
+    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal, pet_weight;
     private RecyclerView lv_photoList;
 
     private Pet pet;
@@ -64,15 +64,19 @@ public class EditPetsFragment extends CommonFragment{
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(pet.getTitle());
+        toolbar.setTitle(pet.getAnimal() + ": " + pet.getTitle());
 
         Button btn_savePet = view.findViewById(R.id.btn_savePet);
         AppCompatButton btn_cancelPet = view.findViewById(R.id.btn_cancelPet);
         Button btn_fotoaparat = view.findViewById(R.id.btn_foto);
 
-        et_title = view.findViewById(R.id.pet_title);
-        et_date = view.findViewById(R.id.pet_date);
-        et_description = view.findViewById(R.id.pet_description);
+        pet_title = view.findViewById(R.id.pet_title);
+        pet_date = view.findViewById(R.id.pet_date);
+        pet_description = view.findViewById(R.id.pet_description);
+        pet_animal = view.findViewById(R.id.pet_animal);
+        pet_race = view.findViewById(R.id.pet_race);
+        pet_weight = view.findViewById(R.id.pet_weight);
+
         lv_photoList = view.findViewById(R.id.pet_photo);
         setDefaultValues();
 
@@ -96,10 +100,13 @@ public class EditPetsFragment extends CommonFragment{
 
 
     private void setDefaultValues() {
-        et_title.setText(pet.getTitle());
+        pet_title.setText(pet.getTitle());
         if (pet.getDate() != null)
-            et_date.setText(pet.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-        et_description.setText(pet.getComment());
+            pet_date.setText(pet.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        pet_description.setText(pet.getComment());
+        pet_weight.setText(pet.getWeight());
+        pet_race.setText(pet.getRace());
+        pet_animal.setText(pet.getAnimal());
 
         lv_photoList.setHasFixedSize(true);
         lv_photoList.setLayoutManager(new GridLayoutManager(getContext(), 4));
@@ -111,22 +118,20 @@ public class EditPetsFragment extends CommonFragment{
 
     private boolean updatePet() {
 
-        if (et_title.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Nejsou vyplněny všechny políčka!", Toast.LENGTH_SHORT).show();
+        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() || pet_weight.getText().toString().trim().isEmpty() || pet_race.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Nejsou vyplněna všechna pole!", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         LocalDate date;
         try {
-            date = Date.parseDate(et_date.getText().toString());
+            date = Date.parseDate(pet_date.getText().toString());
         } catch (IllegalArgumentException e) {
             Toast.makeText(getContext(), "Nesprávný formát data!", Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
-        return petsDatabase.update(new Pet(pet.getId(), et_title.getText().toString(), date, et_description.getText().toString(), pet.isArchive()));
+        return petsDatabase.update(new Pet(pet.getId(), pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString(), Integer.parseInt(String.valueOf(pet_weight.getText())) ,pet_description.getText().toString(), pet.isArchive()));
     }
-
-
 }
