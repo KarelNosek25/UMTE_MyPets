@@ -39,9 +39,6 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-
         TextView msgText = view.findViewById(R.id.txt_msg);
 
         BiometricManager biometricManager = BiometricManager.from(view.getContext());

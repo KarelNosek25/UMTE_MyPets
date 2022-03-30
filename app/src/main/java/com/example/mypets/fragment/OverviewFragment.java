@@ -44,6 +44,7 @@ public class OverviewFragment extends CommonFragment {
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Přehled");
+
         BottomNavigationView bottomNav = view.findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
