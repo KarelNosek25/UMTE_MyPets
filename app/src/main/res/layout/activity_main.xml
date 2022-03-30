@@ -12,11 +12,13 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="@drawable/background"
         android:minHeight="?attr/actionBarSize"
+        android:scrollbarSize="8dp"
         android:theme="?attr/actionBarTheme"
         app:title="Přehled"
-        app:titleTextColor="@color/secondaryColor" />
+        app:titleTextColor="@color/secondaryColor"
+        app:titleTextAppearance="@style/yourstyle"/>
 
     <include layout="@layout/content_main" />
 
