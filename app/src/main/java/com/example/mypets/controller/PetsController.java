@@ -41,6 +41,7 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
     @Override
     public void onBindViewHolder(@NonNull PetsViewHolder holder, int position) {
         holder.txt_title.setText(petsList.get(position).getTitle());
+        holder.txt_animal.setText(petsList.get(position).getAnimal());
         holder.txt_date.setText("");
         if (petsList.get(position).getDate() != null)
             holder.txt_date.setText(petsList.get(position).getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
@@ -60,6 +61,7 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
 
     public class PetsViewHolder extends RecyclerView.ViewHolder {
         TextView txt_title;
+        TextView txt_animal;
         TextView txt_date;
         ConstraintLayout parentLayout;
 
@@ -67,6 +69,7 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
         public PetsViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_title = itemView.findViewById(R.id.txt_pet_title);
+            txt_animal = itemView.findViewById(R.id.txt_pet_animal);
             txt_date = itemView.findViewById(R.id.txt_pet_date);
             parentLayout = itemView.findViewById(R.id.infoPetsLayout);
         }

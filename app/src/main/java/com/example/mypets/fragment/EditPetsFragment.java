@@ -33,7 +33,7 @@ public class EditPetsFragment extends CommonFragment {
     private PhotoDatabase photoDatabase;
     private PetsDatabase petsDatabase;
 
-    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal, pet_weight;
+    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal /*,pet_weight*/;
     private RecyclerView lv_photoList;
 
     private Pet pet;
@@ -75,7 +75,7 @@ public class EditPetsFragment extends CommonFragment {
         pet_description = view.findViewById(R.id.pet_description);
         pet_animal = view.findViewById(R.id.pet_animal);
         pet_race = view.findViewById(R.id.pet_race);
-        pet_weight = view.findViewById(R.id.pet_weight);
+       /* pet_weight = view.findViewById(R.id.pet_weight);*/
 
         lv_photoList = view.findViewById(R.id.pet_photo);
         setDefaultValues();
@@ -104,7 +104,7 @@ public class EditPetsFragment extends CommonFragment {
         if (pet.getDate() != null)
             pet_date.setText(pet.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
         pet_description.setText(pet.getComment());
-        pet_weight.setText(pet.getWeight());
+        /*pet_weight.setText(pet.getWeight());*/
         pet_race.setText(pet.getRace());
         pet_animal.setText(pet.getAnimal());
 
@@ -118,7 +118,7 @@ public class EditPetsFragment extends CommonFragment {
 
     private boolean updatePet() {
 
-        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() || pet_weight.getText().toString().trim().isEmpty() || pet_race.getText().toString().trim().isEmpty()) {
+        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() /*|| pet_weight.getText().toString().trim().isEmpty()*/ || pet_race.getText().toString().trim().isEmpty()) {
             Toast.makeText(getContext(), "Nejsou vyplněna všechna pole!", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -132,6 +132,6 @@ public class EditPetsFragment extends CommonFragment {
         }
 
 
-        return petsDatabase.update(new Pet(pet.getId(), pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString(), Integer.parseInt(String.valueOf(pet_weight.getText())) ,pet_description.getText().toString(), pet.isArchive()));
+        return petsDatabase.update(new Pet(pet.getId(), pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString()/*, Integer.parseInt(String.valueOf(pet_weight.getText())) */,pet_description.getText().toString(), pet.isArchive()));
     }
 }
