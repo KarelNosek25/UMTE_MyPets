@@ -31,6 +31,7 @@ import java.util.List;
 
 public class GalleryFragment extends CommonFragment {
 
+    private PetsDatabase petsDatabase;
     private PhotoDatabase photoDatabase;
     private RecyclerView lv_photoList;
 
@@ -40,7 +41,19 @@ public class GalleryFragment extends CommonFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MainActivity mainActivity = (MainActivity) getActivity();
 
+
         photoDatabase = mainActivity.getPhotoDatabase();
+        petsDatabase = mainActivity.getPetsDatabase();
+
+
+        try {
+            int id = getArguments().getInt("petId");
+            pet = petsDatabase.getOneById(id);
+        } catch (Exception e) {
+            NavHostFragment.findNavController(GalleryFragment.this)
+                    .navigate(R.id.action_GalleryFragment_to_EditPetsFragment);
+        }
+
         return inflater.inflate(R.layout.fragment_galery, container, false);
     }
 
@@ -54,10 +67,13 @@ public class GalleryFragment extends CommonFragment {
 
         //AppCompatButton btn_cancelPet = view.findViewById(R.id.btn_cancelPet);
         //Button btn_fotoaparat = view.findViewById(R.id.btn_foto);
-        Button btn_galerie = view.findViewById(R.id.btn_galerie);
+        //Button btn_galerie = view.findViewById(R.id.btn_galerie);
 
         lv_photoList = view.findViewById(R.id.pet_photo);
         setDefaultValues();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("petId", pet.getId());
 /*
             Bundle bundle = new Bundle();
             bundle.putInt("petId", pet.getId());
@@ -74,10 +90,10 @@ public class GalleryFragment extends CommonFragment {
 
             btn_cancelPet.setOnClickListener(v -> NavHostFragment.findNavController(com.example.mypets.fragment.EditPetsFragment.this)
                     .navigate(R.id.action_EditPetsFragment_to_OverviewFragment));
-*/
+
         btn_galerie.setOnClickListener(v -> NavHostFragment.findNavController(com.example.mypets.fragment.GalleryFragment.this)
                 .navigate(R.id.action_EditPetsFragment_to_GalleryFragment));
-
+*/
     }
 
     private void setDefaultValues() {

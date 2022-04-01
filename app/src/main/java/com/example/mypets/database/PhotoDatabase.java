@@ -85,6 +85,7 @@ public class PhotoDatabase extends Database<Photo> {
         return null;
     }
 
+
     @Override
     public List<Photo> getAll() {
         return null;

@@ -99,7 +99,7 @@ public class EditPetsFragment extends CommonFragment {
                 .navigate(R.id.action_EditPetsFragment_to_OverviewFragment));
 
         btn_galerie.setOnClickListener(v -> NavHostFragment.findNavController(EditPetsFragment.this)
-                .navigate(R.id.action_EditPetsFragment_to_GalleryFragment));
+                .navigate(R.id.action_EditPetsFragment_to_GalleryFragment, bundle));
 
     }
 

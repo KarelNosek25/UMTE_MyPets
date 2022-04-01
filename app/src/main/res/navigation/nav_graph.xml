@@ -25,6 +25,9 @@
         android:name="com.example.mypets.fragment.GalleryFragment"
         android:label="Gallery Fragment"
         tools:layout="@layout/fragment_galery">
+        <action
+            android:id="@+id/action_GalleryFragment_to_EditPetsFragment"
+            app:destination="@id/EditPetsFragment" />
     </fragment>
 
     <fragment
