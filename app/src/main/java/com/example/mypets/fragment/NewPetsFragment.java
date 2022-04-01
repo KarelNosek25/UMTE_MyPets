@@ -25,7 +25,7 @@ import java.time.format.DateTimeFormatter;
 public class NewPetsFragment extends CommonFragment {
 
     private PetsDatabase petsDatabase;
-    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal /*, pet_weight*/;
+    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal, pet_weight;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class NewPetsFragment extends CommonFragment {
         pet_title = view.findViewById(R.id.pet_title);
         pet_date = view.findViewById(R.id.pet_date);
         pet_description = view.findViewById(R.id.pet_description);
-        /*pet_weight = view.findViewById(R.id.pet_weight);*/
+        pet_weight = view.findViewById(R.id.pet_weight);
         pet_animal = view.findViewById(R.id.pet_animal);
         pet_race = view.findViewById(R.id.pet_race);
 
@@ -69,8 +69,13 @@ public class NewPetsFragment extends CommonFragment {
 
     private boolean addPet() {
 
-        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() /*|| pet_weight.getText().toString().trim().isEmpty()*/ || pet_race.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Nejsou vyplněna všechna pole!", Toast.LENGTH_SHORT).show();
+        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() || pet_weight.getText().toString().trim().isEmpty() || pet_race.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Nejsou vyplněna všechna pole.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(Integer.parseInt(pet_weight.getText().toString())>150){
+            Toast.makeText(getContext(), "Vaše zvíře nemůže vážit tolik kg.", Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -78,11 +83,11 @@ public class NewPetsFragment extends CommonFragment {
         try {
             date = Date.parseDate(pet_date.getText().toString());
         } catch (IllegalArgumentException e) {
-            Toast.makeText(getContext(), "Nesprávný formát data!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Nesprávný formát data.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        return petsDatabase.create(new Pet(-1, pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString(), /*Integer.parseInt(String.valueOf(pet_weight.getText())) , */pet_description.getText().toString(), false));
+        return petsDatabase.create(new Pet(-1, pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString(), Integer.parseInt(pet_weight.getText().toString()), pet_description.getText().toString(), false));
     }
 
 }

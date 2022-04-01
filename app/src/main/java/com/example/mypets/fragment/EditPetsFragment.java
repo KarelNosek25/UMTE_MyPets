@@ -1,5 +1,6 @@
 package com.example.mypets.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class EditPetsFragment extends CommonFragment {
     private PhotoDatabase photoDatabase;
     private PetsDatabase petsDatabase;
 
-    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal /*,pet_weight*/;
+    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal, pet_weight;
     private RecyclerView lv_photoList;
 
     private Pet pet;
@@ -69,13 +70,14 @@ public class EditPetsFragment extends CommonFragment {
         Button btn_savePet = view.findViewById(R.id.btn_savePet);
         AppCompatButton btn_cancelPet = view.findViewById(R.id.btn_cancelPet);
         Button btn_fotoaparat = view.findViewById(R.id.btn_foto);
+        Button btn_galerie = view.findViewById(R.id.btn_galerie);
 
         pet_title = view.findViewById(R.id.pet_title);
         pet_date = view.findViewById(R.id.pet_date);
         pet_description = view.findViewById(R.id.pet_description);
         pet_animal = view.findViewById(R.id.pet_animal);
         pet_race = view.findViewById(R.id.pet_race);
-       /* pet_weight = view.findViewById(R.id.pet_weight);*/
+        pet_weight = view.findViewById(R.id.pet_weight);
 
         lv_photoList = view.findViewById(R.id.pet_photo);
         setDefaultValues();
@@ -86,9 +88,9 @@ public class EditPetsFragment extends CommonFragment {
                 .navigate(R.id.action_EditPetsFragment_to_CameraFragment, bundle));
 
         btn_savePet.setOnClickListener(v -> {
-            String message = "Změny se nepodařilo uložit!";
+            String message = "Změny se nepodařilo uložit.";
             if (updatePet())
-                message = "Změny uloženy";
+                message = "Změny uloženy.";
 
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
         });
@@ -96,15 +98,20 @@ public class EditPetsFragment extends CommonFragment {
         btn_cancelPet.setOnClickListener(v -> NavHostFragment.findNavController(EditPetsFragment.this)
                 .navigate(R.id.action_EditPetsFragment_to_OverviewFragment));
 
+        btn_galerie.setOnClickListener(v -> NavHostFragment.findNavController(EditPetsFragment.this)
+                .navigate(R.id.action_EditPetsFragment_to_GalleryFragment));
+
     }
 
 
+    @SuppressLint("SetTextI18n")
     private void setDefaultValues() {
         pet_title.setText(pet.getTitle());
         if (pet.getDate() != null)
             pet_date.setText(pet.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+
         pet_description.setText(pet.getComment());
-        /*pet_weight.setText(pet.getWeight());*/
+        pet_weight.setText(Integer.toString(pet.getWeight()));
         pet_race.setText(pet.getRace());
         pet_animal.setText(pet.getAnimal());
 
@@ -118,20 +125,26 @@ public class EditPetsFragment extends CommonFragment {
 
     private boolean updatePet() {
 
-        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() /*|| pet_weight.getText().toString().trim().isEmpty()*/ || pet_race.getText().toString().trim().isEmpty()) {
-            Toast.makeText(getContext(), "Nejsou vyplněna všechna pole!", Toast.LENGTH_SHORT).show();
+        if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() || pet_weight.getText().toString().trim().isEmpty() || pet_race.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getContext(), "Nejsou vyplněna všechna pole.", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        if(Integer.parseInt(pet_weight.getText().toString())>150){
+            Toast.makeText(getContext(), "Vaše zvíře nemůže vážit tolik kg.", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
 
         LocalDate date;
         try {
             date = Date.parseDate(pet_date.getText().toString());
         } catch (IllegalArgumentException e) {
-            Toast.makeText(getContext(), "Nesprávný formát data!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Nesprávný formát data.", Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
-        return petsDatabase.update(new Pet(pet.getId(), pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString()/*, Integer.parseInt(String.valueOf(pet_weight.getText())) */,pet_description.getText().toString(), pet.isArchive()));
+        return petsDatabase.update(new Pet(pet.getId(), pet_title.getText().toString(), date, pet_animal.getText().toString(), pet_race.getText().toString(), Integer.parseInt(pet_weight.getText().toString()), pet_description.getText().toString(), pet.isArchive()));
     }
 }

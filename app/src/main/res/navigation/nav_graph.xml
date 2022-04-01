@@ -19,6 +19,14 @@
             app:destination="@id/EditPetsFragment" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/GaleryFragment"
+        android:name="com.example.mypets.fragment.GalleryFragment"
+        android:label="Gallery Fragment"
+        tools:layout="@layout/fragment_galery">
+    </fragment>
+
     <fragment
         android:id="@+id/NewPetsFragment"
         android:name="com.example.mypets.fragment.NewPetsFragment"
@@ -40,6 +48,9 @@
         <action
             android:id="@+id/action_EditPetsFragment_to_CameraFragment"
             app:destination="@id/CameraFragment" />
+        <action
+            android:id="@+id/action_EditPetsFragment_to_GalleryFragment"
+            app:destination="@id/GaleryFragment" />
     </fragment>
 
     <fragment

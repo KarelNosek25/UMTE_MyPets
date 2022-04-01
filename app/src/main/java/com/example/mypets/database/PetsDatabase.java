@@ -26,7 +26,7 @@ public class PetsDatabase extends Database<Pet> {
     public static final String COLUMN_DESCRIPTION = "DESCRIPTION";
     public static final String COLUMN_ANIMAL = "ANIMAL";
     public static final String COLUMN_RACE = "RACE";
-   /* public static final String COLUMN_WEIGHT = "WEIGHT";*/
+    public static final String COLUMN_WEIGHT = "WEIGHT";
 
     public static final String COLUMN_ARCHIVE = "ARCHIVE";
 
@@ -36,7 +36,7 @@ public class PetsDatabase extends Database<Pet> {
             COLUMN_DATE + " TEXT, " +
             COLUMN_DESCRIPTION + " TEXT, " +
             COLUMN_RACE + " TEXT, " +
-           /* COLUMN_WEIGHT + " INTEGER, " +*/
+            COLUMN_WEIGHT + " INT, " +
             COLUMN_ANIMAL + " TEXT, " +
             COLUMN_ARCHIVE + " INTEGER NOT NULL)";
 
@@ -61,7 +61,7 @@ public class PetsDatabase extends Database<Pet> {
         cv.put(COLUMN_TITLE, pet.getTitle());
         cv.put(COLUMN_DATE, pet.getDate() == null ? null : pet.getDate().toString());
         cv.put(COLUMN_DESCRIPTION, pet.getComment());
-        /*cv.put(COLUMN_WEIGHT, pet.getWeight());*/
+        cv.put(COLUMN_WEIGHT, pet.getWeight());
         cv.put(COLUMN_ANIMAL, pet.getAnimal());
         cv.put(COLUMN_RACE, pet.getRace());
         cv.put(COLUMN_ARCHIVE, pet.isArchive());
@@ -81,11 +81,11 @@ public class PetsDatabase extends Database<Pet> {
             @SuppressLint("Range") LocalDate date = Date.parseDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
             @SuppressLint("Range") String comment = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
             @SuppressLint("Range") String animal = cursor.getString(cursor.getColumnIndex(COLUMN_ANIMAL));
-           /* @SuppressLint("Range") int weight = cursor.getInt(cursor.getColumnIndex(COLUMN_WEIGHT));*/
+            @SuppressLint("Range") int weight = cursor.getInt(cursor.getColumnIndex(COLUMN_WEIGHT));
             @SuppressLint("Range") String race = cursor.getString(cursor.getColumnIndex(COLUMN_RACE));
             @SuppressLint("Range") boolean archive = cursor.getInt(cursor.getColumnIndex(COLUMN_ARCHIVE)) > 0;
 
-            return new Pet(id, title, date, animal, race, /*weight,*/ comment, archive);
+            return new Pet(id, title, date, animal, race, weight, comment, archive);
         }
         throw new IndexOutOfBoundsException();
     }
@@ -109,11 +109,11 @@ public class PetsDatabase extends Database<Pet> {
                 @SuppressLint("Range") String comment = cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION));
                 @SuppressLint("Range") LocalDate date = Date.parseDate(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)));
                 @SuppressLint("Range") String animal = cursor.getString(cursor.getColumnIndex(COLUMN_ANIMAL));
-              /*  @SuppressLint("Range") int weight = cursor.getInt(cursor.getColumnIndex(COLUMN_WEIGHT));*/
+                @SuppressLint("Range") int weight = cursor.getInt(cursor.getColumnIndex(COLUMN_WEIGHT));
                 @SuppressLint("Range") String race = cursor.getString(cursor.getColumnIndex(COLUMN_RACE));
                 @SuppressLint("Range") boolean archive = cursor.getInt(cursor.getColumnIndex(COLUMN_ARCHIVE)) == 1;
 
-                pets.add(new Pet(id, title, date, animal, race, /*weight, */comment, archive));
+                pets.add(new Pet(id, title, date, animal, race, weight, comment, archive));
                 cursor.moveToNext();
             }
         }
@@ -131,7 +131,7 @@ public class PetsDatabase extends Database<Pet> {
         cv.put(COLUMN_DESCRIPTION, pet.getComment());
         cv.put(COLUMN_ARCHIVE, pet.isArchive());
         cv.put(COLUMN_ANIMAL, pet.getAnimal());
-        /*cv.put(COLUMN_WEIGHT, pet.getWeight());*/
+        cv.put(COLUMN_WEIGHT, pet.getWeight());
         cv.put(COLUMN_RACE, pet.getRace());
         long update = db.update(TABLE_NAME, cv, COLUMN_ID + " = ?", new String[]{String.valueOf(pet.getId())});
 
