@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_GalleryFragment_to_EditPetsFragment"
             app:destination="@id/EditPetsFragment" />
+        <action
+            android:id="@+id/action_GalleryFragment_to_CameraFragment"
+            app:destination="@id/CameraFragment" />
     </fragment>
 
     <fragment
@@ -48,9 +51,7 @@
         <action
             android:id="@+id/action_EditPetsFragment_to_OverviewFragment"
             app:destination="@id/OverviewFragment" />
-        <action
-            android:id="@+id/action_EditPetsFragment_to_CameraFragment"
-            app:destination="@id/CameraFragment" />
+
         <action
             android:id="@+id/action_EditPetsFragment_to_GalleryFragment"
             app:destination="@id/GaleryFragment" />
@@ -69,8 +70,8 @@
         android:label="Camera Fragment"
         tools:layout="@layout/fragment_camera">
         <action
-            android:id="@+id/action_CameraFragment_to_EditPetsFragment"
-            app:destination="@id/EditPetsFragment" />
+            android:id="@+id/action_CameraFragment_to_GalleryFragment"
+            app:destination="@id/GaleryFragment" />
         <action
             android:id="@+id/action_CameraFragment_to_OverviewFragment"
             app:destination="@+id/OverviewFragment" />

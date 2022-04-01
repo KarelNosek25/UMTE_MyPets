@@ -69,7 +69,7 @@ public class CameraFragment extends CommonFragment{
             Bundle bundle = new Bundle();
             bundle.putInt("petId", petId);
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_CameraFragment_to_EditPetsFragment, bundle);
+                    .navigate(R.id.action_CameraFragment_to_GalleryFragment, bundle);
         });
 
     }
@@ -85,7 +85,7 @@ public class CameraFragment extends CommonFragment{
             bundle.putInt("petId", petId);
 
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_CameraFragment_to_EditPetsFragment, bundle);
+                    .navigate(R.id.action_CameraFragment_to_GalleryFragment, bundle);
         } else {
             Toast.makeText(getContext(), "Při ukládání fotky se vyskytla chyba", Toast.LENGTH_SHORT).show();
         }
