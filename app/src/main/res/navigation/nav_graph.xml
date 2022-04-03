@@ -17,6 +17,21 @@
         <action
             android:id="@+id/action_OverviewFragment_to_EditPetsFragment"
             app:destination="@id/EditPetsFragment" />
+        <action
+            android:id="@+id/action_OverviewFragment_to_SettingsFragment"
+            app:destination="@id/SettingsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.mypets.fragment.SettingsFragment"
+        android:label="Settings Fragment"
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_SettingsFragment_to_OverviewFragment"
+            app:destination="@id/OverviewFragment" />
 
     </fragment>
 
@@ -61,8 +76,7 @@
         android:id="@+id/LoginFragment"
         android:name="com.example.mypets.fragment.LoginFragment"
         android:label="Login Fragment"
-        tools:layout="@layout/fragment_login">
-    </fragment>
+        tools:layout="@layout/fragment_login"></fragment>
 
     <fragment
         android:id="@+id/CameraFragment"

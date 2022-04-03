@@ -82,10 +82,12 @@ public class EditPetsFragment extends CommonFragment {
 
         btn_cancelPet.setOnClickListener(v -> NavHostFragment.findNavController(EditPetsFragment.this)
                 .navigate(R.id.action_EditPetsFragment_to_OverviewFragment));
-
-        btn_galerie.setOnClickListener(v -> NavHostFragment.findNavController(EditPetsFragment.this)
-                .navigate(R.id.action_EditPetsFragment_to_GalleryFragment, bundle));
-
+        try {
+            btn_galerie.setOnClickListener(v -> NavHostFragment.findNavController(EditPetsFragment.this)
+                    .navigate(R.id.action_EditPetsFragment_to_GalleryFragment, bundle));
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Nejdříve obsah uložte!", Toast.LENGTH_LONG).show();
+        }
     }
 
 

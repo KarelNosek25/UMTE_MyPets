@@ -53,7 +53,9 @@ public class OverviewFragment extends CommonFragment {
                             .navigate(R.id.action_OverviewFragment_to_NewPetsFragment);
                     return true;
                 case R.id.navigation_home:
-                case R.id.navigation_logout:
+                case R.id.navigation_settings:
+                    NavHostFragment.findNavController(OverviewFragment.this)
+                            .navigate(R.id.action_OverviewFragment_to_SettingsFragment);
                     return true;
             }
             return false;
