@@ -1,6 +1,8 @@
 package com.example.mypets.fragment;
 
-import android.annotation.SuppressLint;
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,30 +14,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.mypets.MainActivity;
 import com.example.mypets.R;
-import com.example.mypets.database.PetsDatabase;
-import com.example.mypets.model.Pet;
-import com.example.mypets.utils.Date;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+public class SettingsFragment extends CommonFragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 
-public class SettingsFragment extends CommonFragment {
-
-
-    private EditText pet_title, pet_date, pet_description, pet_race, pet_animal, pet_weight;
-
-    private Pet pet;
+    private final int PERMISSION_REQUEST_CAMERA = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -49,7 +42,7 @@ public class SettingsFragment extends CommonFragment {
         Button btn_fingerAsk = view.findViewById(R.id.btn_finger_ask);
 
         btn_fotoAsk.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "funguju - foto", Toast.LENGTH_SHORT).show();
+            requestCamera();
         });
 
         btn_cancelAsk.setOnClickListener(v -> NavHostFragment.findNavController(SettingsFragment.this)
@@ -58,8 +51,28 @@ public class SettingsFragment extends CommonFragment {
         btn_fingerAsk.setOnClickListener(v -> {
             Toast.makeText(getContext(), "funguju - otisk", Toast.LENGTH_SHORT).show();
         });
-
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length != 1 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
+            return;
+
+        if (requestCode == PERMISSION_REQUEST_CAMERA) {
+            Toast.makeText(getContext(), "Práva povolena", Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(getContext(), "Práva zamítnuta", Toast.LENGTH_SHORT).show();
+    }
+
+    private void requestCamera() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            // Práva máme, není potřeba o ně žádat
+            Toast.makeText(getContext(), "Práva již přidělena, není nutné znovu žádat", Toast.LENGTH_LONG).show();
+        } else {
+            // Požádáme o práva
+            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
+        }
+    }
 }
 
