@@ -78,11 +78,7 @@ public class GalleryFragment extends CommonFragment {
     private void setDefaultValues() {
 
         lv_photoList.setHasFixedSize(true);
-        lv_photoList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-/*
-        SpacingItemDecorator itemDecorator = new  SpacingItemDecorator(10);
-        lv_photoList.addItemDecoration(itemDecorator);
-*/
+        lv_photoList.setLayoutManager(new GridLayoutManager(getContext(), 4));
         List<Photo> photos = photoDatabase.getByPetId(pet.getId());
         lv_photoList.setHasFixedSize(false);
         lv_photoList.setAdapter(new GalleryController(photos, getContext(), this));
