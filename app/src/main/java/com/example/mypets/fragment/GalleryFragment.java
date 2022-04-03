@@ -78,7 +78,8 @@ public class GalleryFragment extends CommonFragment {
     private void setDefaultValues() {
 
         lv_photoList.setHasFixedSize(true);
-        lv_photoList.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        lv_photoList.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        lv_photoList.setHorizontalFadingEdgeEnabled(false);
         List<Photo> photos = photoDatabase.getByPetId(pet.getId());
         lv_photoList.setHasFixedSize(false);
         lv_photoList.setAdapter(new GalleryController(photos, getContext(), this));
