@@ -53,25 +53,14 @@ public class SettingsFragment extends CommonFragment implements ActivityCompat.O
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length != 1 || grantResults[0] != PackageManager.PERMISSION_GRANTED)
-            return;
-
-        if (requestCode == PERMISSION_REQUEST_CAMERA) {
-            Toast.makeText(getContext(), "Práva povolena", Toast.LENGTH_SHORT).show();
-        } else
-            Toast.makeText(getContext(), "Práva zamítnuta", Toast.LENGTH_SHORT).show();
-    }
-
     private void requestCamera() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             // Práva máme, není potřeba o ně žádat
-            Toast.makeText(getContext(), "Práva již přidělena, není nutné znovu žádat", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Práva již přidělena, není nutné znovu žádat.", Toast.LENGTH_LONG).show();
         } else {
             // Požádáme o práva
             ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
+            Toast.makeText(getContext(), "Požádáno o práva.", Toast.LENGTH_LONG).show();
         }
     }
 }
