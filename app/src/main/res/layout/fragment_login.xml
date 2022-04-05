@@ -19,17 +19,41 @@
         android:textStyle="bold"
         android:typeface="normal" />
 
-    <ImageView
+    <EditText
+        android:id="@+id/login_name"
         android:layout_width="match_parent"
-        android:layout_height="332dp"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_fingerprint" />
-
-    <TextView
-        android:id="@+id/txt_msg"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ff0000" />
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="10dp"
+        android:ems="10"
+        android:hint="Jméno"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Heslo"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginVertical="10dp"
+        android:text="Přihlásit se" />
+
+    <Button
+        android:id="@+id/btn_login_finger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="300dp"
+        android:text="Zkusit otisk prstu" />
 
 
 </LinearLayout>

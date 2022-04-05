@@ -7,10 +7,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -29,6 +33,12 @@ import java.util.concurrent.Executor;
 
 public class LoginFragment extends Fragment {
 
+    EditText username, password;
+    BiometricManager biometricManager;
+
+    String jmeno = "admin";
+    String heslo = "admin";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_login, container, false);
@@ -42,17 +52,34 @@ public class LoginFragment extends Fragment {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Přihlášení uživatele");
 
-        TextView msgText = view.findViewById(R.id.txt_msg);
+        Button btn_login = view.findViewById(R.id.btn_login);
+        Button btn_login_finger = view.findViewById(R.id.btn_login_finger);
 
-        BiometricManager biometricManager = BiometricManager.from(view.getContext());
+        username = view.findViewById(R.id.login_name);
+        password = view.findViewById(R.id.login_password);
+
+        biometricManager = BiometricManager.from(view.getContext());
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString())) {
+                    Toast.makeText(getContext(), "Musíte vyplnit jméno a heslo!", Toast.LENGTH_SHORT).show();
+                } else if (username.getText().toString().equals(jmeno)) {
+                    if (password.getText().toString().equals(heslo)) {
+                        Toast.makeText(getContext(), "Úšpěšně přihlášen.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Špatné jméno/heslo!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         switch (biometricManager.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
-
                 break;
-
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                msgText.setText("Vaše zařízení nemá senzor otisku prstu.");
+                Toast.makeText(getContext(), "Toto zařízení nemá senzor na otisk prstu.", Toast.LENGTH_LONG).show();
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
                 final Intent enrollIntent = new Intent(Settings.ACTION_BIOMETRIC_ENROLL);
@@ -63,15 +90,16 @@ public class LoginFragment extends Fragment {
             case BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED:
             case BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED:
             case BiometricManager.BIOMETRIC_STATUS_UNKNOWN:
-                msgText.setText("Senzor otisku prstu není momentálně dostupný.");
+                Toast.makeText(getContext(), "Senzor k otisku prstu není momentálně dostupný.", Toast.LENGTH_LONG).show();
                 break;
         }
 
         Executor executor = ContextCompat.getMainExecutor(view.getContext());
-        BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback(){
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
+                Toast.makeText(getContext(), "Přihlášení nebylo úspěšné.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -80,11 +108,13 @@ public class LoginFragment extends Fragment {
                 MainActivity mainActivity = (MainActivity) requireActivity();
                 mainActivity.getUser().setAuthenticated(true);
                 NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.OverviewFragment);
+                Toast.makeText(getContext(), "Úšpěšně přihlášen.", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
+                Toast.makeText(getContext(), "Přihlášení nebylo úspěšné.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,6 +124,11 @@ public class LoginFragment extends Fragment {
                 .setNegativeButtonText("Zrušit")
                 .build();
 
-        biometricPrompt.authenticate(promptInfo);
+        btn_login_finger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                biometricPrompt.authenticate(promptInfo);
+            }
+        });
     }
 }

@@ -39,7 +39,6 @@ public class SettingsFragment extends CommonFragment implements ActivityCompat.O
 
         Button btn_fotoAsk = view.findViewById(R.id.btn_foto_ask);
         AppCompatButton btn_cancelAsk = view.findViewById(R.id.btn_cancelAsk);
-        Button btn_fingerAsk = view.findViewById(R.id.btn_finger_ask);
 
         btn_fotoAsk.setOnClickListener(v -> {
             requestCamera();
@@ -48,9 +47,6 @@ public class SettingsFragment extends CommonFragment implements ActivityCompat.O
         btn_cancelAsk.setOnClickListener(v -> NavHostFragment.findNavController(SettingsFragment.this)
                 .navigate(R.id.action_SettingsFragment_to_OverviewFragment));
 
-        btn_fingerAsk.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "funguju - otisk", Toast.LENGTH_SHORT).show();
-        });
     }
 
     private void requestCamera() {
