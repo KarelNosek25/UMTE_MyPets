@@ -23,9 +23,6 @@ import java.util.List;
 
 public class OverviewFragment extends CommonFragment {
 
-    private RecyclerView recyclerView;
-    private PetsController petsController;
-    private RecyclerView.LayoutManager layoutManager;
     private PetsDatabase petsDatabase;
 
     public OverviewFragment() {
@@ -36,7 +33,7 @@ public class OverviewFragment extends CommonFragment {
         return inflater.inflate(R.layout.fragment_overview, container, false);
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "NonConstantResourceId"})
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -66,14 +63,14 @@ public class OverviewFragment extends CommonFragment {
     }
 
     private void initRecyclerView(View view) {
-        recyclerView = view.findViewById(R.id.petList);
+        RecyclerView recyclerView = view.findViewById(R.id.petList);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         List<Pet> pets = petsDatabase.getAll();
 
-        petsController = new PetsController(pets, getContext(), this);
+        PetsController petsController = new PetsController(pets, getContext(), this);
         recyclerView.setAdapter(petsController);
     }
 }

@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,8 +20,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mypets.R;
 
 public class SettingsFragment extends CommonFragment implements ActivityCompat.OnRequestPermissionsResultCallback {
-
-    private final int PERMISSION_REQUEST_CAMERA = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,9 +37,7 @@ public class SettingsFragment extends CommonFragment implements ActivityCompat.O
         Button btn_fotoAsk = view.findViewById(R.id.btn_foto_ask);
         AppCompatButton btn_cancelAsk = view.findViewById(R.id.btn_cancelAsk);
 
-        btn_fotoAsk.setOnClickListener(v -> {
-            requestCamera();
-        });
+        btn_fotoAsk.setOnClickListener(v -> requestCamera());
 
         btn_cancelAsk.setOnClickListener(v -> NavHostFragment.findNavController(SettingsFragment.this)
                 .navigate(R.id.action_SettingsFragment_to_OverviewFragment));
@@ -55,8 +50,9 @@ public class SettingsFragment extends CommonFragment implements ActivityCompat.O
             Toast.makeText(getContext(), "Práva již přidělena, není nutné znovu žádat.", Toast.LENGTH_LONG).show();
         } else {
             // Požádáme o práva
+            int PERMISSION_REQUEST_CAMERA = 0;
             ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
-            Toast.makeText(getContext(), "Požádáno o práva.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Požádáno o práva.", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -43,7 +43,7 @@ public class GalleryController extends RecyclerView.Adapter<GalleryController.Ph
         return photoList.size();
     }
 
-    public class PhotoViewHolder extends RecyclerView.ViewHolder {
+    public static class PhotoViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_photo;
 
         public PhotoViewHolder(@NonNull View itemView) {

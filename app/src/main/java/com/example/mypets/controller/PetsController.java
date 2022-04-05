@@ -59,7 +59,7 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
         return petsList.size();
     }
 
-    public class PetsViewHolder extends RecyclerView.ViewHolder {
+    public static class PetsViewHolder extends RecyclerView.ViewHolder {
         TextView txt_title;
         TextView txt_animal;
         TextView txt_date;

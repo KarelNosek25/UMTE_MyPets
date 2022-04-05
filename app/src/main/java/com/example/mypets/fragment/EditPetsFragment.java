@@ -32,7 +32,7 @@ public class EditPetsFragment extends CommonFragment {
     private Pet pet;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MainActivity mainActivity = (MainActivity) getActivity();
 
         petsDatabase = mainActivity.getPetsDatabase();

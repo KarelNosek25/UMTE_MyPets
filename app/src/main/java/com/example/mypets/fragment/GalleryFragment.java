@@ -1,7 +1,6 @@
 package com.example.mypets.fragment;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,25 +25,22 @@ import com.example.mypets.database.PetsDatabase;
 import com.example.mypets.database.PhotoDatabase;
 import com.example.mypets.model.Pet;
 import com.example.mypets.model.Photo;
-import com.example.mypets.utils.SpacingItemDecorator;
 
 import java.util.List;
 
 public class GalleryFragment extends CommonFragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 
-    private final int PERMISSION_REQUEST_CAMERA = 0;
-    private PetsDatabase petsDatabase;
     private PhotoDatabase photoDatabase;
     private RecyclerView lv_photoList;
 
     private Pet pet;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MainActivity mainActivity = (MainActivity) getActivity();
 
         photoDatabase = mainActivity.getPhotoDatabase();
-        petsDatabase = mainActivity.getPetsDatabase();
+        PetsDatabase petsDatabase = mainActivity.getPetsDatabase();
 
 
         try {

@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">MyPets</string>
+    <string name="ulozit">Uložit</string>
+    <string name="zpet">Zpět</string>
+    <string name="novy">Nový</string>
+    <string name="alik">Alík</string>
+    <string name="dalsi_info">Další informace o zvířeti</string>
+    <string name="jmeno">Jméno:</string>
+    <string name="datum">Datum:</string>
+    <string name="popis">Popis:</string>
+    <string name="zvire">Zvíře:</string>
+    <string name="rasa">Rasa:</string>
+    <string name="vaha">Váha (kg):</string>
+    <string name="vahaDetail">50kg</string>
+    <string name="pes_kocka">pes/kočka</string>
+    <string name="foxterier">Foxteriér</string>
+    <string name="galerie">Galerie</string>
+    <string name="foto">Foto</string>
+    <string name="mypets">MyPets</string>
+    <string name="jmeno2">Jméno</string>
+    <string name="heslo">Heslo</string>
+    <string name="prihlasit">Přihlásit se</string>
+    <string name="otisk">Zkusit otisk prstu</string>
+    <string name="pridat">Přidat</string>
+    <string name="zrusit">Zrušit</string>
+    <string name="prava">Práva na fotoaparát:</string>
+    <string name="vyzadat">Vyžádat</string>
+    <string name="textview">TextView</string>
+    <string name="deleno">:</string>
+    <string name="domu">Domů</string>
+    <string name="nastaveni">Nastavení</string>
 </resources>

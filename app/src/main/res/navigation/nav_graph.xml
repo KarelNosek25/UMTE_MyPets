@@ -76,7 +76,8 @@
         android:id="@+id/LoginFragment"
         android:name="com.example.mypets.fragment.LoginFragment"
         android:label="Login Fragment"
-        tools:layout="@layout/fragment_login"></fragment>
+        tools:layout="@layout/fragment_login">
+    </fragment>
 
     <fragment
         android:id="@+id/CameraFragment"
