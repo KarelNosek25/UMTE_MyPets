@@ -67,6 +67,9 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getContext(), "Musíte vyplnit jméno a heslo!", Toast.LENGTH_SHORT).show();
                 } else if (username.getText().toString().equals(jmeno)) {
                     if (password.getText().toString().equals(heslo)) {
+                        MainActivity mainActivity = (MainActivity) requireActivity();
+                        mainActivity.getUser().setAuthenticated(true);
+                        NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.OverviewFragment);
                         Toast.makeText(getContext(), "Úšpěšně přihlášen.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
