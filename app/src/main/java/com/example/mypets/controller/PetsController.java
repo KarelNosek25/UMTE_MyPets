@@ -19,7 +19,7 @@ import java.util.List;
 import com.example.mypets.R;
 import com.example.mypets.model.Pet;
 
-public class PetsController extends RecyclerView.Adapter<PetsController.PetsViewHolder>{
+public class PetsController extends RecyclerView.Adapter<PetsController.PetsViewHolder> {
 
     List<Pet> petsList;
     Context context;
@@ -38,6 +38,7 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
         return new PetsViewHolder(view);
     }
 
+    //zobrazení určitých dat (názvy kategorií v jejich celkovém přehledu)
     @Override
     public void onBindViewHolder(@NonNull PetsViewHolder holder, int position) {
         holder.txt_title.setText(petsList.get(position).getTitle());
@@ -46,6 +47,7 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
         if (petsList.get(position).getDate() != null)
             holder.txt_date.setText(petsList.get(position).getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
 
+        //přesměrování na editaci při rozkliknutí kategorie
         holder.parentLayout.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", petsList.get(position).getId());
@@ -59,12 +61,12 @@ public class PetsController extends RecyclerView.Adapter<PetsController.PetsView
         return petsList.size();
     }
 
+    //zobrazení infa jednotlivé kategorie zvířete
     public static class PetsViewHolder extends RecyclerView.ViewHolder {
         TextView txt_title;
         TextView txt_animal;
         TextView txt_date;
         ConstraintLayout parentLayout;
-
 
         public PetsViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -66,7 +66,7 @@ public class NewPetsFragment extends CommonFragment {
 
     }
 
-
+    //přidání nového zvířete (+ kontrola údajů)
     private boolean addPet() {
 
         if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() || pet_weight.getText().toString().trim().isEmpty() || pet_race.getText().toString().trim().isEmpty()) {
@@ -74,7 +74,7 @@ public class NewPetsFragment extends CommonFragment {
             return false;
         }
 
-        if(Integer.parseInt(pet_weight.getText().toString())>150){
+        if (Integer.parseInt(pet_weight.getText().toString()) > 150) {
             Toast.makeText(getContext(), "Vaše zvíře nemůže vážit tolik kg.", Toast.LENGTH_LONG).show();
             return false;
         }

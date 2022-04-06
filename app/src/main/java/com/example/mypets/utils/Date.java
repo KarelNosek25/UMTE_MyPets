@@ -20,7 +20,8 @@ public class Date {
             try {
                 date = LocalDate.parse(textDate, DateTimeFormatter.ofPattern(format));
                 return date;
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
 
         throw new IllegalArgumentException("Invalid date format");

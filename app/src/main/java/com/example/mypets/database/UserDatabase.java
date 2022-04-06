@@ -15,15 +15,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDatabase extends Database<User>{
+public class UserDatabase extends Database<User> {
 
+    //názvy sloupců v tabulce
     public static final String TABLE_NAME = "USER_TABLE";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_USERNAME = "USERNAME";
     public static final String COLUMN_PASSWORD = "PASSWORD";
     public static final String DEFAULT_USERNAME = "Uživatel";
 
-    private static final String DATABASE_CREATE_TABLE =  "CREATE TABLE " + TABLE_NAME + " (" +
+    //příprava pro vytvoření tabulky
+    private static final String DATABASE_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_USERNAME + " TEXT, " +
             COLUMN_PASSWORD + " TEXT)";
@@ -32,7 +34,7 @@ public class UserDatabase extends Database<User>{
         super(context);
     }
 
-
+    //vytvoření tabulky
     protected static void onCreateDB(@NotNull SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE_TABLE);
 
@@ -48,6 +50,7 @@ public class UserDatabase extends Database<User>{
         onCreateDB(db);
     }
 
+    //získání uživatele
     public User getUser() throws IllegalStateException {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;
@@ -64,6 +67,7 @@ public class UserDatabase extends Database<User>{
         throw new IllegalStateException("Can not get user!");
     }
 
+    //vytvoření nového uživatele
     @Override
     public boolean create(User user) {
         ContentValues cv = new ContentValues();
@@ -76,6 +80,7 @@ public class UserDatabase extends Database<User>{
         return insert > 0;
     }
 
+    //získání uživatele dle jeho id
     @Override
     public User getOneById(int id) throws IndexOutOfBoundsException {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -96,6 +101,7 @@ public class UserDatabase extends Database<User>{
         return new ArrayList<>();
     }
 
+    //update uživatele
     @Override
     public boolean update(@NotNull User user) {
         SQLiteDatabase db = this.getWritableDatabase();

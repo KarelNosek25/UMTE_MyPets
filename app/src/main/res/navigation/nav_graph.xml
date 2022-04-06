@@ -58,6 +58,7 @@
             android:id="@+id/action_NewPetsFragment_to_OverviewFragment"
             app:destination="@id/OverviewFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/EditPetsFragment"
         android:name="com.example.mypets.fragment.EditPetsFragment"
@@ -77,6 +78,7 @@
         android:name="com.example.mypets.fragment.LoginFragment"
         android:label="Login Fragment"
         tools:layout="@layout/fragment_login">
+
     </fragment>
 
     <fragment

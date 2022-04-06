@@ -20,11 +20,13 @@ import java.util.List;
 
 public class PhotoDatabase extends Database<Photo> {
 
+    //názvy sloupců v tabulce
     public static final String TABLE_NAME = "PHOTO_TABLE";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_PET_ID = "PET_ID";
     public static final String COLUMN_PHOTO = "PHOTO";
 
+    //příprava pro vytvoření tabulky
     private static final String DATABASE_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_PET_ID + " INTEGER, " +
@@ -35,6 +37,7 @@ public class PhotoDatabase extends Database<Photo> {
         super(context);
     }
 
+    //vytvoření tabulky
     protected static void onCreateDB(@NotNull SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE_TABLE);
     }
@@ -44,6 +47,7 @@ public class PhotoDatabase extends Database<Photo> {
         onCreateDB(db);
     }
 
+    //získání již existujících fotek zvířete z databáze
     public List<Photo> getByPetId(int petId) throws IndexOutOfBoundsException {
         List<Photo> photos = new ArrayList<>();
 
@@ -64,6 +68,7 @@ public class PhotoDatabase extends Database<Photo> {
         return photos;
     }
 
+    //vytvoření nové fotky do kategorie nějakého zvířete
     @Override
     public boolean create(Photo photo) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -84,7 +89,6 @@ public class PhotoDatabase extends Database<Photo> {
     public Photo getOneById(int id) throws IndexOutOfBoundsException {
         return null;
     }
-
 
     @Override
     public List<Photo> getAll() {

@@ -25,7 +25,7 @@ import com.example.mypets.R;
 import com.example.mypets.database.PhotoDatabase;
 import com.example.mypets.model.Photo;
 
-public class CameraFragment extends CommonFragment{
+public class CameraFragment extends CommonFragment {
 
     private ImageView iv_picture;
     private Bitmap bitmap;
@@ -59,6 +59,7 @@ public class CameraFragment extends CommonFragment{
         iv_picture = view.findViewById(R.id.picture);
         startCamera();
 
+        //kontrola práv
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, 100);
         }
@@ -74,12 +75,16 @@ public class CameraFragment extends CommonFragment{
 
     }
 
+    //uložení nové fotky
     private void savePicture() {
+
+        //kontrola jestli foto existuje
         if (bitmap == null) {
             Toast.makeText(getContext(), "Nejdříve musíte něco vyfotit!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        //uložení nové fotky k dané kategorii zvířete
         if (photoDatabase.create(new Photo(-1, petId, bitmap))) {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", petId);
@@ -91,6 +96,7 @@ public class CameraFragment extends CommonFragment{
         }
     }
 
+    //start kamery
     private void startCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 100);
@@ -104,5 +110,5 @@ public class CameraFragment extends CommonFragment{
             iv_picture.setImageBitmap(bitmap);
         }
     }
-    
+
 }

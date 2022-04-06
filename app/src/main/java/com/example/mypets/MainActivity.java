@@ -9,8 +9,8 @@ import com.example.mypets.database.PhotoDatabase;
 import com.example.mypets.database.UserDatabase;
 import com.example.mypets.model.User;
 
+//hlavní aktivita aplikace (vytvoření databází)
 public class MainActivity extends AppCompatActivity {
-
 
     private PhotoDatabase photoDatabase;
 

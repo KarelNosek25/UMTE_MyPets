@@ -90,7 +90,7 @@ public class EditPetsFragment extends CommonFragment {
         }
     }
 
-
+    //naplnění řádků údajema (při rozkliknutí nějaké kategorie)
     @SuppressLint("SetTextI18n")
     private void setDefaultValues() {
         pet_title.setText(pet.getTitle());
@@ -103,8 +103,10 @@ public class EditPetsFragment extends CommonFragment {
         pet_animal.setText(pet.getAnimal());
     }
 
+    //update dané kategorie
     private boolean updatePet() {
 
+        //kontrola špatných/žádných údajů
         if (pet_title.getText().toString().trim().isEmpty() || pet_animal.getText().toString().trim().isEmpty() || pet_weight.getText().toString().trim().isEmpty() || pet_race.getText().toString().trim().isEmpty()) {
             Toast.makeText(getContext(), "Nejsou vyplněna všechna pole.", Toast.LENGTH_SHORT).show();
             return false;

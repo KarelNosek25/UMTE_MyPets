@@ -33,6 +33,7 @@ public class GalleryController extends RecyclerView.Adapter<GalleryController.Ph
         return new PhotoViewHolder(view);
     }
 
+    //zobrazení dat na určité pozici
     @Override
     public void onBindViewHolder(@NonNull PhotoViewHolder holder, int position) {
         holder.iv_photo.setImageBitmap(photoList.get(position).getBitmap());
@@ -43,6 +44,7 @@ public class GalleryController extends RecyclerView.Adapter<GalleryController.Ph
         return photoList.size();
     }
 
+    //zobrazení jednotlivé fotky
     public static class PhotoViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_photo;
 

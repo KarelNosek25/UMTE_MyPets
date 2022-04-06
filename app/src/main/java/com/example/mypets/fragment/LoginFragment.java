@@ -60,6 +60,7 @@ public class LoginFragment extends Fragment {
 
         biometricManager = BiometricManager.from(view.getContext());
 
+        //kontrola údajů pro přihlášení (jméno a heslo)
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +79,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        //kontrola při přihlášení díky otisku prstu
         switch (biometricManager.canAuthenticate(BIOMETRIC_STRONG | DEVICE_CREDENTIAL)) {
             case BiometricManager.BIOMETRIC_SUCCESS:
                 break;
@@ -97,6 +99,7 @@ public class LoginFragment extends Fragment {
                 break;
         }
 
+        //špatné přihlášení díky otisku prstu
         Executor executor = ContextCompat.getMainExecutor(view.getContext());
         BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
             @Override
@@ -105,6 +108,7 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(), "Přihlášení nebylo úspěšné.", Toast.LENGTH_SHORT).show();
             }
 
+            //úspěšné přihlášení díky otisku prstu
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
@@ -114,6 +118,7 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(), "Úšpěšně přihlášen.", Toast.LENGTH_SHORT).show();
             }
 
+            //špatné přihlášení díky otisku prstu
             @Override
             public void onAuthenticationFailed() {
                 super.onAuthenticationFailed();
@@ -121,12 +126,14 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        //tabulka ve které se nachází místo pro otisk prstu (+ info okolo)
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Přihlášení")
                 .setDescription("Použijte váš otisk prstu pro přihlášení do aplikace")
                 .setNegativeButtonText("Zrušit")
                 .build();
 
+        //tlačítko po němž se ukáže tabulka pro přihlášení díky otisku prstu
         btn_login_finger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

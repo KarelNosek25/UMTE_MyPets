@@ -42,6 +42,7 @@ public class OverviewFragment extends CommonFragment {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Přehled");
 
+        //spodní navigace (domů, přidat, nastavení)
         BottomNavigationView bottomNav = view.findViewById(R.id.navigation);
         bottomNav.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -62,6 +63,7 @@ public class OverviewFragment extends CommonFragment {
 
     }
 
+    //základní zobrazení jednotlivých kategorií zvířat
     private void initRecyclerView(View view) {
         RecyclerView recyclerView = view.findViewById(R.id.petList);
         recyclerView.setHasFixedSize(true);

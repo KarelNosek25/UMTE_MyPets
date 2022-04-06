@@ -12,6 +12,7 @@ import com.example.mypets.R;
 
 public abstract class CommonFragment extends Fragment {
 
+    //základní fragment potřebný ke spuštění aplikace
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         MainActivity mainActivity = (MainActivity) requireActivity();

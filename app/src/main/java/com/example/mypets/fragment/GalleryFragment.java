@@ -79,6 +79,7 @@ public class GalleryFragment extends CommonFragment implements ActivityCompat.On
                 .navigate(R.id.action_GalleryFragment_to_EditPetsFragment, bundle));
     }
 
+    //přesměrování do fotoaparátu (+ kontrola práv)
     private void requestCamera() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(getContext(), "Nejsou udělena práva k používání fotoaparátu!", Toast.LENGTH_LONG).show();
@@ -90,6 +91,7 @@ public class GalleryFragment extends CommonFragment implements ActivityCompat.On
         }
     }
 
+    //základní zobrazení galerie
     private void setDefaultValues() {
 
         lv_photoList.setHasFixedSize(true);

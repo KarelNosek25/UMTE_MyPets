@@ -8,7 +8,8 @@ import androidx.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class Database <T> extends SQLiteOpenHelper implements DatabaseInterface<T>{
+//pomocná třída pro fungování databáze (zvířata, fotky, uživatelé)
+public abstract class Database<T> extends SQLiteOpenHelper implements DatabaseInterface<T> {
 
     public static final int DB_VERSION = 2;
 

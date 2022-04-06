@@ -44,6 +44,7 @@ public class SettingsFragment extends CommonFragment implements ActivityCompat.O
 
     }
 
+    //požádání o přidělení práv
     private void requestCamera() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             // Práva máme, není potřeba o ně žádat

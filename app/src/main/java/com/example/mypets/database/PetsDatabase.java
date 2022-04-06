@@ -19,6 +19,7 @@ import java.util.List;
 
 public class PetsDatabase extends Database<Pet> {
 
+    //názvy sloupců v tabulce
     public static final String TABLE_NAME = "PETS_TABLE";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_TITLE = "TITLE";
@@ -30,6 +31,7 @@ public class PetsDatabase extends Database<Pet> {
 
     public static final String COLUMN_ARCHIVE = "ARCHIVE";
 
+    //příprava pro vytvoření tabulky
     private static final String DATABASE_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
             COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_TITLE + " TEXT, " +
@@ -44,6 +46,7 @@ public class PetsDatabase extends Database<Pet> {
         super(context);
     }
 
+    //vytvoření tabulky
     protected static void onCreateDB(@NotNull SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE_TABLE);
     }
@@ -53,6 +56,7 @@ public class PetsDatabase extends Database<Pet> {
         onCreateDB(db);
     }
 
+    //vytvoření nové kategorie nějakého zvířete
     @Override
     public boolean create(@NotNull Pet pet) {
         ContentValues cv = new ContentValues();
@@ -70,6 +74,7 @@ public class PetsDatabase extends Database<Pet> {
         return insert > 0;
     }
 
+    //získání již existujícího zvířete z databáze
     @Override
     public Pet getOneById(int id) throws IndexOutOfBoundsException {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -90,6 +95,7 @@ public class PetsDatabase extends Database<Pet> {
         throw new IndexOutOfBoundsException();
     }
 
+    //vypsání všech kategorií zvířat z databáze
     @Override
     public List<Pet> getAll() {
         return getAll(false);
@@ -103,6 +109,7 @@ public class PetsDatabase extends Database<Pet> {
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(query, new String[]{isArchive ? "1" : "0"});
 
         if (cursor.moveToFirst()) {
+            //hledá záznamy dokud kurzor nebude na konci v databázi
             while (!cursor.isAfterLast()) {
                 @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
                 @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
@@ -121,6 +128,7 @@ public class PetsDatabase extends Database<Pet> {
         return pets;
     }
 
+    //update dané kategorie
     @Override
     public boolean update(Pet pet) {
         ContentValues cv = new ContentValues();
