@@ -72,6 +72,8 @@ public class LoginFragment extends Fragment {
                         mainActivity.getUser().setAuthenticated(true);
                         NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.OverviewFragment);
                         Toast.makeText(getContext(), "Úšpěšně přihlášen.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Špatné jméno/heslo!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getContext(), "Špatné jméno/heslo!", Toast.LENGTH_SHORT).show();
@@ -126,7 +128,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        //tabulka ve které se nachází místo pro otisk prstu (+ info okolo)
+        //tabulka ve které se naachází místo pro otisk prstu (+ info okolo)
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Přihlášení")
                 .setDescription("Použijte váš otisk prstu pro přihlášení do aplikace")
