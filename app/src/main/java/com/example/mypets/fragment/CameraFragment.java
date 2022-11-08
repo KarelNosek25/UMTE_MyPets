@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.fragment.NavHostFragment;
@@ -29,6 +30,7 @@ public class CameraFragment extends CommonFragment {
 
     private ImageView iv_picture;
     private Bitmap bitmap;
+
 
     private int petId;
 
@@ -50,6 +52,9 @@ public class CameraFragment extends CommonFragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Aktuální fotka");
 
         photoDatabase = ((MainActivity) getActivity()).getPhotoDatabase();
 
