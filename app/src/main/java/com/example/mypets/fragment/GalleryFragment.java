@@ -1,19 +1,15 @@
 package com.example.mypets.fragment;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +24,7 @@ import com.example.mypets.model.Photo;
 
 import java.util.List;
 
-public class GalleryFragment extends CommonFragment implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class GalleryFragment extends CommonFragment {
 
     private PhotoDatabase photoDatabase;
     private RecyclerView lv_photoList;
@@ -54,7 +50,6 @@ public class GalleryFragment extends CommonFragment implements ActivityCompat.On
         return inflater.inflate(R.layout.fragment_galery, container, false);
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -71,24 +66,11 @@ public class GalleryFragment extends CommonFragment implements ActivityCompat.On
         Bundle bundle = new Bundle();
         bundle.putInt("petId", pet.getId());
 
-        btn_foto.setOnClickListener(v -> {
-            requestCamera();
-        });
+        btn_foto.setOnClickListener(v -> NavHostFragment.findNavController(GalleryFragment.this)
+                .navigate(R.id.action_GalleryFragment_to_NewPhotoFragment, bundle));
 
         btn_cancelFoto.setOnClickListener(v -> NavHostFragment.findNavController(GalleryFragment.this)
                 .navigate(R.id.action_GalleryFragment_to_EditPetsFragment, bundle));
-    }
-
-    //přesměrování do fotoaparátu (+ kontrola práv)
-    private void requestCamera() {
-        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getContext(), "Nejsou udělena práva k používání fotoaparátu!", Toast.LENGTH_LONG).show();
-        } else {
-            Bundle bundle = new Bundle();
-            bundle.putInt("petId", pet.getId());
-            NavHostFragment.findNavController(GalleryFragment.this)
-                    .navigate(R.id.action_GalleryFragment_to_CameraFragment, bundle);
-        }
     }
 
     //základní zobrazení galerie

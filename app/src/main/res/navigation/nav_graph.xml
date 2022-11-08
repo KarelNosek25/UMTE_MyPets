@@ -44,7 +44,20 @@
             android:id="@+id/action_GalleryFragment_to_EditPetsFragment"
             app:destination="@id/EditPetsFragment" />
         <action
-            android:id="@+id/action_GalleryFragment_to_CameraFragment"
+            android:id="@+id/action_GalleryFragment_to_NewPhotoFragment"
+            app:destination="@id/NewPhotoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/NewPhotoFragment"
+        android:name="com.example.mypets.fragment.NewPhotoFragment"
+        android:label="New photo Fragment"
+        tools:layout="@layout/fragment_new_photo">
+        <action
+            android:id="@+id/action_NewPhotoFragment_to_GalleryFragment"
+            app:destination="@id/GaleryFragment" />
+        <action
+            android:id="@+id/action_NewPhotoFragment_to_CameraFragment"
             app:destination="@id/CameraFragment" />
     </fragment>
 
