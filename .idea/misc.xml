@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/VS/Ing/1_rocnik_2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_camera.xml" value="0.1" />
+        <entry key="..\:/VS/Ing/1_rocnik_2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_edge_camera.xml" value="0.25416666666666665" />
+        <entry key="..\:/VS/Ing/1_rocnik_2_semestr/UMTE/UMTE_MyPets/app/src/main/res/layout/fragment_new_photo.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="16" project-jdk-type="JavaSDK" />
 </project>
