@@ -76,7 +76,7 @@ public class NewPhotoFragment extends CommonFragment implements ActivityCompat.O
             Bundle bundle = new Bundle();
             bundle.putInt("petId", pet.getId());
             NavHostFragment.findNavController(NewPhotoFragment.this)
-                    .navigate(R.id.action_NewPhotoFragment_to_CameraFragment, bundle);
+                    .navigate(R.id.action_NewPhotoFragment_to_NormalCameraFragment, bundle);
         }
     }
 

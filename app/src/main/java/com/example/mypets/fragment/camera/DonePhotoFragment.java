@@ -61,16 +61,8 @@ public class DonePhotoFragment extends CommonFragment {
 
         Button btn_savePicture = view.findViewById(R.id.btn_savePicture);
         AppCompatButton btn_cancelCamera = view.findViewById(R.id.btn_cancelCamera);
-        AppCompatButton btn_newPicture = view.findViewById(R.id.btn_newPicture);
         iv_picture = view.findViewById(R.id.picture);
-        startCamera();
 
-        //kontrola práv
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, 100);
-        }
-
-        btn_newPicture.setOnClickListener(v -> startCamera());
         btn_savePicture.setOnClickListener(v -> savePicture());
         btn_cancelCamera.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -101,20 +93,4 @@ public class DonePhotoFragment extends CommonFragment {
             Toast.makeText(getContext(), "Při ukládání fotky se vyskytla chyba", Toast.LENGTH_SHORT).show();
         }
     }
-
-    //start kamery
-    private void startCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 100);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            bitmap = (Bitmap) data.getExtras().get("data");
-            iv_picture.setImageBitmap(bitmap);
-        }
-    }
-
 }
