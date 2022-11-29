@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_NewPhotoFragment_to_CameraFragment"
             app:destination="@id/CameraFragment" />
+        <action
+            android:id="@+id/action_NewPhotoFragment_to_EdgeCameraFragment"
+            app:destination="@id/EdgeCameraFragment" />
     </fragment>
 
     <fragment
@@ -104,6 +107,19 @@
             app:destination="@id/GaleryFragment" />
         <action
             android:id="@+id/action_CameraFragment_to_OverviewFragment"
+            app:destination="@+id/OverviewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EdgeCameraFragment"
+        android:name="com.example.mypets.fragment.EdgeCameraFragment"
+        android:label="Edge Camera Fragment"
+        tools:layout="@layout/fragment_edge_camera">
+        <action
+            android:id="@+id/action_EdgeCameraFragment_to_GalleryFragment"
+            app:destination="@id/GaleryFragment" />
+        <action
+            android:id="@+id/action_EdgeCameraFragment_to_OverviewFragment"
             app:destination="@+id/OverviewFragment" />
     </fragment>
 </navigation>
