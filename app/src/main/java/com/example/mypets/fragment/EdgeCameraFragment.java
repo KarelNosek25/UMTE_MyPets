@@ -55,14 +55,14 @@ public class EdgeCameraFragment extends CommonFragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Aktuální fotka");
+        toolbar.setTitle("Aktuální hranová fotka");
 
         photoDatabase = ((MainActivity) getActivity()).getPhotoDatabase();
 
         Button btn_saveEdgePicture = view.findViewById(R.id.btn_saveEdgePicture);
         AppCompatButton btn_cancelEdgeCamera = view.findViewById(R.id.btn_cancelEdgeCamera);
         AppCompatButton btn_newEdgePicture = view.findViewById(R.id.btn_newEdgePicture);
-        iv_picture = view.findViewById(R.id.picture);
+        iv_picture = view.findViewById(R.id.edgePicture);
         startEdgeCamera();
 
         //kontrola práv

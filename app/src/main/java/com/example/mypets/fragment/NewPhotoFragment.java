@@ -59,6 +59,10 @@ public class NewPhotoFragment extends CommonFragment implements ActivityCompat.O
             requestCamera();
         });
 
+        btn_edge_photo.setOnClickListener(v -> {
+            requestEdgeCamera();
+        });
+
         btn_cancelNewFoto.setOnClickListener(v -> NavHostFragment.findNavController(NewPhotoFragment.this)
                 .navigate(R.id.action_NewPhotoFragment_to_GalleryFragment, bundle));
     }
@@ -72,6 +76,18 @@ public class NewPhotoFragment extends CommonFragment implements ActivityCompat.O
             bundle.putInt("petId", pet.getId());
             NavHostFragment.findNavController(NewPhotoFragment.this)
                     .navigate(R.id.action_NewPhotoFragment_to_CameraFragment, bundle);
+        }
+    }
+
+    //přesměrování do hranového fotoaparátu (+ kontrola práv)
+    private void requestEdgeCamera() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getContext(), "Nejsou udělena práva k používání fotoaparátu!", Toast.LENGTH_LONG).show();
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putInt("petId", pet.getId());
+            NavHostFragment.findNavController(NewPhotoFragment.this)
+                    .navigate(R.id.action_NewPhotoFragment_to_EdgeCameraFragment, bundle);
         }
     }
 
