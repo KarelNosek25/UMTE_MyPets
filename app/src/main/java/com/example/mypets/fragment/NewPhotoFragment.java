@@ -70,7 +70,7 @@ public class NewPhotoFragment extends CommonFragment implements ActivityCompat.O
     //přesměrování do fotoaparátu (+ kontrola práv)
     private void requestCamera() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getContext(), "Nejsou udělena práva k používání fotoaparátu!", Toast.LENGTH_LONG).show();
+            checkPermission();
         } else {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", pet.getId());
@@ -82,13 +82,18 @@ public class NewPhotoFragment extends CommonFragment implements ActivityCompat.O
     //přesměrování do hranového fotoaparátu (+ kontrola práv)
     private void requestEdgeCamera() {
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getContext(), "Nejsou udělena práva k používání fotoaparátu!", Toast.LENGTH_LONG).show();
+            checkPermission();
         } else {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", pet.getId());
             NavHostFragment.findNavController(NewPhotoFragment.this)
                     .navigate(R.id.action_NewPhotoFragment_to_EdgeCameraFragment, bundle);
         }
+    }
+
+    //informování uživatele o právech na fotoaparát
+    private void checkPermission(){
+        Toast.makeText(getContext(), "Nejsou udělena práva k používání fotoaparátu!", Toast.LENGTH_LONG).show();
     }
 
 }
