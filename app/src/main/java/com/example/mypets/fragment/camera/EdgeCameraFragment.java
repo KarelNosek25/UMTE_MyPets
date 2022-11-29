@@ -1,6 +1,7 @@
-package com.example.mypets.fragment;
+package com.example.mypets.fragment.camera;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -23,14 +24,19 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mypets.MainActivity;
 import com.example.mypets.R;
+import com.example.mypets.activity.EdgeActivity;
 import com.example.mypets.database.PhotoDatabase;
+import com.example.mypets.fragment.CommonFragment;
 import com.example.mypets.model.Photo;
 
-public class CameraFragment extends CommonFragment {
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
+
+public class EdgeCameraFragment extends CommonFragment {
 
     private ImageView iv_picture;
     private Bitmap bitmap;
-
 
     private int petId;
 
@@ -43,10 +49,10 @@ public class CameraFragment extends CommonFragment {
             petId = getArguments().getInt("petId");
         } catch (Exception e) {
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_CameraFragment_to_OverviewFragment);
+                    .navigate(R.id.action_EdgeCameraFragment_to_OverviewFragment);
         }
 
-        return inflater.inflate(R.layout.fragment_camera, container, false);
+        return inflater.inflate(R.layout.fragment_edge_camera, container, false);
     }
 
     @Override
@@ -54,66 +60,55 @@ public class CameraFragment extends CommonFragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Aktuální fotka");
+        toolbar.setTitle("Aktuální hranová fotka");
 
         photoDatabase = ((MainActivity) getActivity()).getPhotoDatabase();
 
-        Button btn_savePicture = view.findViewById(R.id.btn_savePicture);
-        AppCompatButton btn_cancelCamera = view.findViewById(R.id.btn_cancelCamera);
-        AppCompatButton btn_newPicture = view.findViewById(R.id.btn_newPicture);
-        iv_picture = view.findViewById(R.id.picture);
-        startCamera();
+        Button btn_saveEdgePicture = view.findViewById(R.id.btn_saveEdgePicture);
+        AppCompatButton btn_cancelEdgeCamera = view.findViewById(R.id.btn_cancelEdgeCamera);
+        AppCompatButton btn_newEdgePicture = view.findViewById(R.id.btn_newEdgePicture);
+        iv_picture = view.findViewById(R.id.edgePicture);
+        startEdgeCamera();
 
         //kontrola práv
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, 100);
         }
 
-        btn_newPicture.setOnClickListener(v -> startCamera());
-        btn_savePicture.setOnClickListener(v -> savePicture());
-        btn_cancelCamera.setOnClickListener(v -> {
+        btn_newEdgePicture.setOnClickListener(v -> startEdgeCamera());
+        btn_saveEdgePicture.setOnClickListener(v -> saveEdgePicture());
+        btn_cancelEdgeCamera.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", petId);
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_CameraFragment_to_GalleryFragment, bundle);
+                    .navigate(R.id.action_EdgeCameraFragment_to_GalleryFragment, bundle);
         });
-
     }
 
-    //uložení nové fotky
-    private void savePicture() {
+    //uložení nové hranové fotky
+    private void saveEdgePicture() {
 
-        //kontrola jestli foto existuje
+        //kontrola jestli hranové foto existuje
         if (bitmap == null) {
             Toast.makeText(getContext(), "Nejdříve musíte něco vyfotit!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        //uložení nové fotky k dané kategorii zvířete
+        //uložení nové hranové fotky k dané kategorii zvířete
         if (photoDatabase.create(new Photo(-1, petId, bitmap))) {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", petId);
 
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_CameraFragment_to_GalleryFragment, bundle);
+                    .navigate(R.id.action_EdgeCameraFragment_to_GalleryFragment, bundle);
         } else {
-            Toast.makeText(getContext(), "Při ukládání fotky se vyskytla chyba", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Při ukládání hranové fotky se vyskytla chyba", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //start kamery
-    private void startCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 100);
+    //start hranové kamery
+    private void startEdgeCamera() {
+        Intent intent1 = new Intent(this, EdgeActivity.class);
+        startActivity(intent1);
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            bitmap = (Bitmap) data.getExtras().get("data");
-            iv_picture.setImageBitmap(bitmap);
-        }
-    }
-
 }

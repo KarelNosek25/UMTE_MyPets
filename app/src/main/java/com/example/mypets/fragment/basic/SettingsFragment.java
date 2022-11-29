@@ -1,4 +1,4 @@
-package com.example.mypets.fragment;
+package com.example.mypets.fragment.basic;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mypets.R;
+import com.example.mypets.fragment.CommonFragment;
 
 public class SettingsFragment extends CommonFragment implements ActivityCompat.OnRequestPermissionsResultCallback {
 

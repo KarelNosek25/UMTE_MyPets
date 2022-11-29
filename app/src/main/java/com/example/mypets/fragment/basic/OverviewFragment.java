@@ -1,4 +1,4 @@
-package com.example.mypets.fragment;
+package com.example.mypets.fragment.basic;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import com.example.mypets.MainActivity;
 import com.example.mypets.R;
 import com.example.mypets.controller.PetsController;
 import com.example.mypets.database.PetsDatabase;
+import com.example.mypets.fragment.CommonFragment;
 import com.example.mypets.model.Pet;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

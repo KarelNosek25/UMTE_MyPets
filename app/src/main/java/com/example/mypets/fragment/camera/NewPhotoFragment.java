@@ -1,4 +1,4 @@
-package com.example.mypets.fragment;
+package com.example.mypets.fragment.camera;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -18,6 +18,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mypets.MainActivity;
 import com.example.mypets.R;
 import com.example.mypets.database.PetsDatabase;
+import com.example.mypets.fragment.CommonFragment;
 import com.example.mypets.model.Pet;
 
 public class NewPhotoFragment extends CommonFragment implements ActivityCompat.OnRequestPermissionsResultCallback {

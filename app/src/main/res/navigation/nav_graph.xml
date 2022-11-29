@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/OverviewFragment"
-        android:name="com.example.mypets.fragment.OverviewFragment"
+        android:name="com.example.mypets.fragment.basic.OverviewFragment"
         android:label="Overview Fragment"
         tools:layout="@layout/fragment_overview">
 
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/SettingsFragment"
-        android:name="com.example.mypets.fragment.SettingsFragment"
+        android:name="com.example.mypets.fragment.basic.SettingsFragment"
         android:label="Settings Fragment"
         tools:layout="@layout/fragment_settings">
 
@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/NewPhotoFragment"
-        android:name="com.example.mypets.fragment.NewPhotoFragment"
+        android:name="com.example.mypets.fragment.camera.NewPhotoFragment"
         android:label="New photo Fragment"
         tools:layout="@layout/fragment_new_photo">
         <action
@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/NewPetsFragment"
-        android:name="com.example.mypets.fragment.NewPetsFragment"
+        android:name="com.example.mypets.fragment.basic.NewPetsFragment"
         android:label="New Plant Fragment"
         tools:layout="@layout/fragment_new_pets">
 
@@ -77,7 +77,7 @@
 
     <fragment
         android:id="@+id/EditPetsFragment"
-        android:name="com.example.mypets.fragment.EditPetsFragment"
+        android:name="com.example.mypets.fragment.basic.EditPetsFragment"
         android:label="Edit Pets Fragment"
         tools:layout="@layout/fragment_edit_pets">
         <action
@@ -99,9 +99,9 @@
 
     <fragment
         android:id="@+id/CameraFragment"
-        android:name="com.example.mypets.fragment.CameraFragment"
+        android:name="com.example.mypets.fragment.camera.DonePhotoFragment"
         android:label="Camera Fragment"
-        tools:layout="@layout/fragment_camera">
+        tools:layout="@layout/fragment_done_photo_fragment">
         <action
             android:id="@+id/action_CameraFragment_to_GalleryFragment"
             app:destination="@id/GaleryFragment" />
@@ -112,7 +112,7 @@
 
     <fragment
         android:id="@+id/EdgeCameraFragment"
-        android:name="com.example.mypets.fragment.EdgeCameraFragment"
+        android:name="com.example.mypets.fragment.camera.EdgeCameraFragment"
         android:label="Edge Camera Fragment"
         tools:layout="@layout/fragment_edge_camera">
         <action

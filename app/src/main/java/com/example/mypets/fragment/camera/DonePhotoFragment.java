@@ -1,4 +1,4 @@
-package com.example.mypets.fragment;
+package com.example.mypets.fragment.camera;
 
 import android.Manifest;
 import android.content.Intent;
@@ -24,10 +24,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mypets.MainActivity;
 import com.example.mypets.R;
 import com.example.mypets.database.PhotoDatabase;
+import com.example.mypets.fragment.CommonFragment;
 import com.example.mypets.model.Photo;
 
-
-public class EdgeCameraFragment extends CommonFragment {
+public class DonePhotoFragment extends CommonFragment {
 
     private ImageView iv_picture;
     private Bitmap bitmap;
@@ -44,10 +44,10 @@ public class EdgeCameraFragment extends CommonFragment {
             petId = getArguments().getInt("petId");
         } catch (Exception e) {
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_EdgeCameraFragment_to_OverviewFragment);
+                    .navigate(R.id.action_CameraFragment_to_OverviewFragment);
         }
 
-        return inflater.inflate(R.layout.fragment_edge_camera, container, false);
+        return inflater.inflate(R.layout.fragment_done_photo_fragment, container, false);
     }
 
     @Override
@@ -55,33 +55,34 @@ public class EdgeCameraFragment extends CommonFragment {
         super.onViewCreated(view, savedInstanceState);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("Aktuální hranová fotka");
+        toolbar.setTitle("Aktuální fotka");
 
         photoDatabase = ((MainActivity) getActivity()).getPhotoDatabase();
 
-        Button btn_saveEdgePicture = view.findViewById(R.id.btn_saveEdgePicture);
-        AppCompatButton btn_cancelEdgeCamera = view.findViewById(R.id.btn_cancelEdgeCamera);
-        AppCompatButton btn_newEdgePicture = view.findViewById(R.id.btn_newEdgePicture);
-        iv_picture = view.findViewById(R.id.edgePicture);
-        startEdgeCamera();
+        Button btn_savePicture = view.findViewById(R.id.btn_savePicture);
+        AppCompatButton btn_cancelCamera = view.findViewById(R.id.btn_cancelCamera);
+        AppCompatButton btn_newPicture = view.findViewById(R.id.btn_newPicture);
+        iv_picture = view.findViewById(R.id.picture);
+        startCamera();
 
         //kontrola práv
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, 100);
         }
 
-        btn_newEdgePicture.setOnClickListener(v -> startEdgeCamera());
-        btn_saveEdgePicture.setOnClickListener(v -> saveEdgePicture());
-        btn_cancelEdgeCamera.setOnClickListener(v -> {
+        btn_newPicture.setOnClickListener(v -> startCamera());
+        btn_savePicture.setOnClickListener(v -> savePicture());
+        btn_cancelCamera.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putInt("petId", petId);
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_EdgeCameraFragment_to_GalleryFragment, bundle);
+                    .navigate(R.id.action_CameraFragment_to_GalleryFragment, bundle);
         });
+
     }
 
     //uložení nové fotky
-    private void saveEdgePicture() {
+    private void savePicture() {
 
         //kontrola jestli foto existuje
         if (bitmap == null) {
@@ -95,14 +96,14 @@ public class EdgeCameraFragment extends CommonFragment {
             bundle.putInt("petId", petId);
 
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_EdgeCameraFragment_to_GalleryFragment, bundle);
+                    .navigate(R.id.action_CameraFragment_to_GalleryFragment, bundle);
         } else {
             Toast.makeText(getContext(), "Při ukládání fotky se vyskytla chyba", Toast.LENGTH_SHORT).show();
         }
     }
 
     //start kamery
-    private void startEdgeCamera() {
+    private void startCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 100);
     }

@@ -1,4 +1,4 @@
-package com.example.mypets.fragment;
+package com.example.mypets.fragment.basic;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mypets.MainActivity;
 import com.example.mypets.R;
 import com.example.mypets.database.PetsDatabase;
+import com.example.mypets.fragment.CommonFragment;
 import com.example.mypets.model.Pet;
 import com.example.mypets.utils.Date;
 
